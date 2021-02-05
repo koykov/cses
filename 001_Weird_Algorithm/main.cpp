@@ -1,7 +1,7 @@
 #include <iostream>
 
 int main() {
-    int n = 0;
+    long n = 0;
     std::cin >> n;
     if (n < 1 || n > 1e6) {
         return 1;
