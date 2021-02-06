@@ -1,3 +1,9 @@
+/**
+ * @file
+ * Weird Algorithm
+ * @see https://cses.fi/problemset/task/1068
+ */
+
 #include <iostream>
 
 int main() {

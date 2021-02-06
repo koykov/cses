@@ -1,5 +1,32 @@
+/**
+ * @file
+ * Repetitions
+ * @see https://cses.fi/problemset/task/1069
+ */
+
 #include <iostream>
 #include <algorithm>
+
+int get_idx(char c) {
+    int r;
+    switch (c) {
+        case 'A':
+            r = 0;
+            break;
+        case 'C':
+            r = 1;
+            break;
+        case 'G':
+            r = 2;
+            break;
+        case 'T':
+            r = 3;
+            break;
+        default:
+            r = -1;
+    }
+    return r;
+}
 
 int main() {
     std::string s;
@@ -9,62 +36,28 @@ int main() {
 
     char c = '\0';
     int x = 0, y = 0;
-    for (int i=0; i<s.length(); i++) {
-        if (s[i] != c) {
+    for (auto b : s) {
+        if (b != c) {
             int l = y-x;
-            int a = -1;
-            switch (c) {
-                case 'A':
-                    a = 0;
-                    break;
-
-                case 'C':
-                    a = 1;
-                    break;
-
-                case 'G':
-                    a = 2;
-                    break;
-
-                case 'T':
-                    a = 3;
-                    break;
-            }
-            if (a < 0) {
-                c = s[i];
+            int i = get_idx(c);
+            if (i < 0) {
+                c = b;
                 y++;
                 continue;
             }
-            if (l > sl[a]) {
-                sl[a] = l;
+            if (l > sl[i]) {
+                sl[i] = l;
             }
-            c = s[i];
+            c = b;
             x = y;
         }
         y++;
     }
 
     int l = y-x;
-    int a = -1;
-    switch (c) {
-        case 'A':
-            a = 0;
-            break;
-
-        case 'C':
-            a = 1;
-            break;
-
-        case 'G':
-            a = 2;
-            break;
-
-        case 'T':
-            a = 3;
-            break;
-    }
-    if (l > sl[a]) {
-        sl[a] = l;
+    int i = get_idx(c);
+    if (l > sl[i]) {
+        sl[i] = l;
     }
 
     std::cout << *std::max_element(sl, sl+4);
