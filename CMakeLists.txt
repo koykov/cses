@@ -3,6 +3,6 @@ project(cses)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(001_Weird_Algorithm src/001_Weird_Algorithm.cpp)
-add_executable(002_Missing_Number src/002_Missing_Number.cpp)
-add_executable(003_Repetitions src/003_Repetitions.cpp)
+add_executable(001 src/001.cpp)
+add_executable(002 src/002.cpp)
+add_executable(003 src/003.cpp)
