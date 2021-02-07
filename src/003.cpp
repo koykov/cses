@@ -4,8 +4,9 @@
  * @see https://cses.fi/problemset/task/1069
  */
 
-#include <iostream>
-#include <algorithm>
+#include <bits/stdc++.h>
+
+using namespace std;
 
 int get_idx(char c) {
     int r;
@@ -29,10 +30,13 @@ int get_idx(char c) {
 }
 
 int main() {
-    std::string s;
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    string s;
     int sl[4] = {0};
 
-    std::cin >> s;
+    cin >> s;
 
     char c = '\0';
     int x = 0, y = 0;
@@ -60,7 +64,7 @@ int main() {
         sl[i] = l;
     }
 
-    std::cout << *std::max_element(sl, sl+4);
+    cout << *max_element(sl, sl+4);
 
     return 0;
 }
