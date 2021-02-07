@@ -8,13 +8,15 @@
 
 using namespace std;
 
+const int MAX_N = (int)1e6;
+
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
     long n = 0;
     cin >> n;
-    if (n < 1 || n > 1e6) {
+    if (n < 1 || n > MAX_N) {
         return 1;
     }
     cout << n << " ";

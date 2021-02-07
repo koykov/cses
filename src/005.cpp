@@ -8,7 +8,7 @@
 
 using namespace std;
 
-const int MAX_N = 1000000;
+const int MAX_N = (int)1e6;
 
 int main() {
     ios::sync_with_stdio(false);
