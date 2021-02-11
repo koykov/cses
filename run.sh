@@ -1,28 +1,9 @@
 #!/usr/bin/env bash
 
-# Init variables.
-BUILD=0
-TARGET=""
-
-# Parse cli options.
-while [[ "$#" -gt 0 ]]; do
-    case $1 in
-        -t|--target) TARGET="$2"; shift;;
-        -b|--build) BUILD=1;;
-        *) arg="$1"; shift;;
-    esac;
-    shift;
-done
-
-# Prepare environment.
-if [[ "$BUILD" == "1" ]]
-then
-    ./build.sh
-fi
-
-if [[ "$TARGET" ]]
-then
-    # Single target passed.
+# Execute single target.
+function target_exec() {
+    TARGET=${1#"mocks/"}
+    
     echo "Testing target $TARGET"
 
     # Check binary exists.
@@ -41,7 +22,7 @@ then
     if [[ ! -d "$MOCKS" ]]
     then
         echo "Mocks dir doesn't exists: $MOCKS"
-        exit 1
+        return 1
     fi
 
     for f in "$MOCKS"/*; do
@@ -66,7 +47,37 @@ then
 
         fi
     done
+
+    return 0
+}
+
+# Init variables.
+BUILD=0
+TARGET=""
+
+# Parse cli options.
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        -t|--target) TARGET="$2"; shift;;
+        -b|--build) BUILD=1;;
+        *) arg="$1"; shift;;
+    esac;
+    shift;
+done
+
+# Prepare environment.
+if [[ "$BUILD" == "1" ]]
+then
+    ./build.sh
+fi
+
+if [[ "$TARGET" ]]
+then
+    # Single target passed.
+    target_exec ${TARGET}
 else
     # All targets selected.
-    echo "TODO all targets"
+    for target in "mocks"/*; do
+        target_exec ${target}
+    done
 fi
