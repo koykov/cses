@@ -68,7 +68,7 @@ done
 # Prepare environment.
 if [[ "$BUILD" == "1" ]]
 then
-    ./build.sh
+    ./build.sh ${TARGET}
 fi
 
 if [[ "$TARGET" ]]
